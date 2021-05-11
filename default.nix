@@ -5,13 +5,9 @@ let
 in
 rec {
 
-  confluent = pkgs.callPackage ./confluent.nix {
-    inherit jdk;
-  };
+  confluent = pkgs.callPackage ./confluent.nix { };
 
-  ccloud = pkgs.callPackage ./ccloud.nix {
-    inherit pkgs;
-  };
+  ccloud = pkgs.callPackage ./ccloud.nix { };
 
   rdkafka = pkgs.callPackage ./rdkafka.nix { };
 }

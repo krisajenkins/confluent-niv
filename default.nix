@@ -11,8 +11,7 @@ rec {
 
   ccloud = pkgs.callPackage ./ccloud.nix {
     inherit pkgs;
-    inherit (sources) ccloud;
   };
 
   rdkafka = pkgs.callPackage ./rdkafka.nix { };
-};
+}

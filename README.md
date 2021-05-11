@@ -1,2 +1,3 @@
 # confluent-niv
-Easy Confluent platform setup via Niv.
+
+Confluent Platform for `nix`, packaged up in a way that will play well with `niv`.

@@ -1,11 +1,9 @@
 { pkgs ? import <nixpkgs> { } }:
 
-let
-  jdk = pkgs.openjdk;
-in
-rec {
-
-  confluent = pkgs.callPackage ./confluent.nix { };
+{
+  confluent = pkgs.callPackage ./confluent.nix {
+    jdk = pkgs.openjdk;
+  };
 
   ccloud = pkgs.callPackage ./ccloud.nix { };
 

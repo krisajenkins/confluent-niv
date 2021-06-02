@@ -32,6 +32,13 @@ stdenv.mkDerivation rec {
       --replace "#advertised.listeners=PLAINTEXT://your.host.name:9092" \
                  "advertised.listeners=PLAINTEXT://localhost:9092"
 
+    echo >> $out/etc/ksqldb/ksql-server.properties
+    echo 'ksql.streams.replication.factor = 1' >> $out/etc/ksqldb/ksql-server.properties
+
+    substituteInPlace $out/etc/ksqldb/ksql-server.properties \
+      --replace "# ksql.schema.registry.url=http://localhost:8081" \
+                  "ksql.schema.registry.url=http://localhost:8081"
+
     patchShebangs $out/bin
 
     # allow us the specify logging directory using env

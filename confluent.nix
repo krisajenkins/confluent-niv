@@ -4,6 +4,7 @@
 , jdk
 , makeWrapper
 , bash
+, ps
 , gnused
 }:
 
@@ -17,7 +18,7 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ makeWrapper ];
-  buildInputs = [ jdk bash ];
+  buildInputs = [ jdk bash ps ];
 
   dontFixup = true;
 
@@ -52,6 +53,8 @@ stdenv.mkDerivation rec {
       wrapProgram $p \
         --set KAFKA_LOG_DIR "/tmp/apache-kafka-logs"
     done
+
+    $out/bin/confluent-hub install confluentinc/kafka-connect-aws-lambda:1.1.1 --no-prompt
   '';
 
   meta = with lib; {

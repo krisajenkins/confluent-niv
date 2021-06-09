@@ -54,7 +54,7 @@ stdenv.mkDerivation rec {
         --set KAFKA_LOG_DIR "/tmp/apache-kafka-logs"
     done
 
-    $out/bin/confluent-hub install confluentinc/kafka-connect-aws-lambda:1.1.1 --no-prompt
+    $out/bin/confluent-hub install --no-prompt confluentinc/kafka-connect-aws-lambda:1.1.1
   '';
 
   meta = with lib; {

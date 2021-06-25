@@ -31,7 +31,9 @@ stdenv.mkDerivation rec {
     # Customise and fix the configuration.
     substituteInPlace $out/etc/kafka/server.properties \
       --replace "#advertised.listeners=PLAINTEXT://your.host.name:9092" \
-                 "advertised.listeners=PLAINTEXT://localhost:9092"
+                 "advertised.listeners=PLAINTEXT://localhost:9092" \
+      --replace "log.retention.hours=168" \
+                "log.retention.hours=-1"
 
     echo >> $out/etc/ksqldb/ksql-server.properties
     echo 'ksql.streams.replication.factor = 1' >> $out/etc/ksqldb/ksql-server.properties

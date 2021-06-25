@@ -1,14 +1,12 @@
-{ lib, stdenv, fetchFromGitHub, zlib, perl, pkgconfig, python, openssl }:
+{ lib, stdenv, zlib, perl, pkgconfig, python, openssl }:
 
 stdenv.mkDerivation rec {
-  name = "rdkafka-${version}";
-  version = "1.7.0";
+  name = "rdkafka";
+  version = "v1.7.0";
 
-  src = fetchFromGitHub {
-    owner = "edenhill";
-    repo = "librdkafka";
-    rev = "v${version}";
-    sha256 = "1dimy4p3p99wi2cjvmzzhqjlas20vr2d8ni42z09m7yv5psn1f9l";
+  src = builtins.fetchGit {
+    url = "https://github.com/edenhill/librdkafka";
+    ref = "refs/tags/${version}";
   };
 
   nativeBuildInputs = [ pkgconfig ];

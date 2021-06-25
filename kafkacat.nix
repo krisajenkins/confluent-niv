@@ -1,15 +1,13 @@
-{ lib, stdenv, fetchFromGitHub, pkg-config, zlib, rdkafka, yajl, avro-c, serdes }:
+{ lib, stdenv, pkg-config, zlib, rdkafka, yajl, avro-c, serdes }:
 
 stdenv.mkDerivation rec {
   pname = "kafkacat";
 
   version = "1.6.0";
 
-  src = fetchFromGitHub {
-    owner = "edenhill";
-    repo = "kafkacat";
-    rev = version;
-    sha256 = "0z3bw00s269myfd1xqksjyznmgp74xfs09xqlq347adsgby3cmfs";
+  src = builtins.fetchGit {
+    url = "https://github.com/edenhill/kafkacat";
+    ref = "refs/tags/${version}";
   };
 
   nativeBuildInputs = [ pkg-config ];

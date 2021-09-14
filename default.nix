@@ -15,7 +15,7 @@ in
 
   rdkafka = pkgs.callPackage ./rdkafka.nix { };
 
-  kafkacat = pkgs.callPackage ./kafkacat.nix {
+  kcat = pkgs.callPackage ./kcat.nix {
     inherit serdes;
   };
 }

@@ -23,6 +23,11 @@ stdenv.mkDerivation rec {
   dontFixup = true;
 
   installPhase = ''
+    HUB_COMPONENTS_DIR=$out/share/confluent-hub-components
+	mkdir -p $HUB_COMPONENTS_DIR
+    bin/confluent-hub install --no-prompt --component-dir $HUB_COMPONENTS_DIR confluentinc/kafka-connect-aws-lambda:1.1.2
+    bin/confluent-hub install --no-prompt --component-dir $HUB_COMPONENTS_DIR jcustenborder/kafka-connect-spooldir:2.0.62
+
     mkdir -p $out
     cp -R * $out
 
@@ -55,9 +60,6 @@ stdenv.mkDerivation rec {
       wrapProgram $p \
         --set KAFKA_LOG_DIR "/tmp/apache-kafka-logs"
     done
-
-    $out/bin/confluent-hub install --no-prompt confluentinc/kafka-connect-aws-lambda:1.1.2
-    $out/bin/confluent-hub install --no-prompt jcustenborder/kafka-connect-spooldir:2.0.62
   '';
 
   meta = with lib; {

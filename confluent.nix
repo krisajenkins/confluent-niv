@@ -23,41 +23,41 @@ stdenv.mkDerivation rec {
   dontFixup = true;
 
   installPhase = ''
-    rm -rf bin/windows
+    mkdir -p $out
+    cp -R * $out
+
+    rm -rf $out/bin/windows
 
     # Customise and fix the configuration.
-    substituteInPlace etc/kafka/server.properties \
+    substituteInPlace $out/etc/kafka/server.properties \
       --replace "#advertised.listeners=PLAINTEXT://your.host.name:9092" \
                  "advertised.listeners=PLAINTEXT://localhost:9092" \
       --replace "log.retention.hours=168" \
                 "log.retention.hours=-1"
 
-    echo >> etc/ksqldb/ksql-server.properties
-    echo 'ksql.streams.replication.factor = 1' >> etc/ksqldb/ksql-server.properties
+    echo >> $out/etc/ksqldb/ksql-server.properties
+    echo 'ksql.streams.replication.factor = 1' >> $out/etc/ksqldb/ksql-server.properties
 
-    substituteInPlace etc/ksqldb/ksql-server.properties \
+    substituteInPlace $out/etc/ksqldb/ksql-server.properties \
       --replace "# ksql.schema.registry.url=http://localhost:8081" \
                   "ksql.schema.registry.url=http://localhost:8081"
 
-    patchShebangs bin
+    patchShebangs $out/bin
 
     # allow us the specify logging directory using env
-    substituteInPlace bin/kafka-run-class \
+    substituteInPlace $out/bin/kafka-run-class \
       --replace 'LOG_DIR="$base_dir/logs"' 'LOG_DIR="$KAFKA_LOG_DIR"'
 
-    substituteInPlace bin/ksql-run-class \
+    substituteInPlace $out/bin/ksql-run-class \
       --replace 'LOG_DIR="$base_dir/logs"' 'LOG_DIR="$KAFKA_LOG_DIR"'
 
-    for p in bin\/*; do
+    for p in $out/bin\/*; do
       wrapProgram $p \
         --set KAFKA_LOG_DIR "/tmp/apache-kafka-logs"
     done
 
-    bin/confluent-hub install --no-prompt confluentinc/kafka-connect-aws-lambda:1.1.2
-    bin/confluent-hub install --no-prompt jcustenborder/kafka-connect-spooldir:2.0.62
-
-    mkdir -p $out
-    cp -R * $out
+    $out/bin/confluent-hub install --no-prompt confluentinc/kafka-connect-aws-lambda:1.1.2
+    $out/bin/confluent-hub install --no-prompt jcustenborder/kafka-connect-spooldir:2.0.62
   '';
 
   meta = with lib; {

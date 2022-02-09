@@ -57,6 +57,10 @@ stdenv.mkDerivation rec {
     substituteInPlace $out/bin/ksql-run-class \
       --replace 'LOG_DIR="$base_dir/logs"' 'LOG_DIR="$KAFKA_LOG_DIR"'
 
+
+    # Handled in a separate nix recipe.
+    rm $out/bin/confluent
+
     for p in $out/bin\/*; do
       wrapProgram $p \
         --set KAFKA_LOG_DIR "/tmp/apache-kafka-logs"

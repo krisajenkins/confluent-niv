@@ -1,8 +1,8 @@
-{ lib, stdenv, zlib, perl, pkgconfig, python, openssl }:
+{ lib, stdenv, zlib, perl, pkgconfig, python, openssl, which }:
 
 stdenv.mkDerivation rec {
   name = "rdkafka";
-  version = "v1.7.0";
+  version = "v1.6.2";
 
   src = builtins.fetchGit {
     url = "https://github.com/edenhill/librdkafka";
@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ pkgconfig ];
-  buildInputs = [ zlib perl python openssl ];
+  buildInputs = [ zlib perl python openssl which ];
 
   NIX_CFLAGS_COMPILE = "-Wno-error=strict-overflow";
 

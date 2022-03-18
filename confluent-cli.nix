@@ -1,7 +1,7 @@
 { pkgs }:
 
 pkgs.stdenv.mkDerivation rec {
-  name = "confluent-cloud-cli";
+  name = "confluent-cli";
   version = "2.8.0";
   src = pkgs.fetchurl {
     url = "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/${version}/confluent_v${version}_darwin_amd64.tar.gz";

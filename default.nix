@@ -4,14 +4,17 @@ let
   serdes = pkgs.callPackage ./serdes.nix { };
 
 in
+rec
 {
   inherit serdes;
 
-  confluent = pkgs.callPackage ./confluent.nix {
+  confluent-platform = pkgs.callPackage ./confluent-platform.nix {
     jdk = pkgs.openjdk;
   };
+  confluent = confluent-platform; # Deprecated alias.
 
-  ccloud = pkgs.callPackage ./ccloud.nix { };
+  confluent-cli = pkgs.callPackage ./confluent-cli.nix { };
+  ccloud = confluent-cli; # Deprecated alias.
 
   rdkafka = pkgs.callPackage ./rdkafka.nix { };
 

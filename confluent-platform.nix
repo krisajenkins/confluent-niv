@@ -43,6 +43,7 @@ stdenv.mkDerivation rec {
     echo >> $out/etc/ksqldb/ksql-server.properties
     echo 'ksql.streams.replication.factor = 1' >> $out/etc/ksqldb/ksql-server.properties
     echo 'ksql.query.pull.table.scan.enabled=true' >> $out/etc/ksqldb/ksql-server.properties
+    echo 'ksql.extension.dir = /Users/kjenkins/Work/Confluent/jenkins-udfs/extensions/' >> $out/etc/ksqldb/ksql-server.properties
 
     substituteInPlace $out/etc/ksqldb/ksql-server.properties \
       --replace "# ksql.schema.registry.url=http://localhost:8081" \

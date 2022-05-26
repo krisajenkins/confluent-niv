@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   pname = "kcat";
-  version = "1.7.0";
+  version = "1.7.1";
 
   src = builtins.fetchGit {
     url = "https://github.com/edenhill/kcat";

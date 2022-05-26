@@ -6,7 +6,7 @@ stdenv.mkDerivation rec {
 
   src = builtins.fetchGit {
     url = "https://github.com/edenhill/kcat";
-    ref = "${version}";
+    ref = "refs/tags/${version}";
     rev = "f2236ae5d985b9f31631b076df24ca6c33542e61";
   };
 

@@ -10,11 +10,11 @@
 
 stdenv.mkDerivation rec {
   pname = "confluent-platform";
-  version = "7.0.1";
+  version = "7.2.2";
 
   src = fetchurl {
     url = "http://packages.confluent.io/archive/${lib.versions.majorMinor version}/confluent-${version}.tar.gz";
-    sha256 = "1xamd4cv2chqkr885s9aahl0znw0bhddba7zsdvpxdinfgzw0ks3";
+    sha256 = "08pkfkimh60q27cqpbryzqkn4ykk0pxr0ydhqk6nj5zgj0cnbybi";
   };
 
   nativeBuildInputs = [ makeWrapper ];

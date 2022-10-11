@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   name = "rdkafka";
-  version = "v1.6.2";
+  version = "v1.9.2";
 
   src = builtins.fetchGit {
     url = "https://github.com/edenhill/librdkafka";

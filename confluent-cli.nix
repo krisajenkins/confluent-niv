@@ -2,10 +2,10 @@
 
 pkgs.stdenv.mkDerivation rec {
   name = "confluent-cli";
-  version = "2.28.1";
+  version = "3.1.1";
   src = pkgs.fetchurl {
-    url = "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/${version}/confluent_v${version}_darwin_amd64.tar.gz";
-    sha256 = "1mvg1z2hkims7x0zwsnhwf46dzgly97ci2gd8hd0730l9v4cig4n";
+    url = "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/${version}/confluent_${version}_darwin_amd64.tar.gz";
+    sha256 = "0sicg9ar8db4jkwj6b7jkj8m2mbzrkv59cvd6qiyyw2pwmdjid68";
   };
 
   dontFixup = true;

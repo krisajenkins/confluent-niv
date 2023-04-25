@@ -1,15 +1,9 @@
-{ pkgs, rdkafka, avro-c, jansson, curl, perl }:
+{ pkgs, rdkafka, serdes-src }:
 
-pkgs.stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation {
   name = "serdes";
+  src = serdes-src;
 
-  version = "v6.2.0";
-
-  nativeBuildInputs = [ rdkafka avro-c jansson curl ];
-  buildInputs = [ perl ];
-
-  src = builtins.fetchGit {
-    url = "https://github.com/confluentinc/libserdes/";
-    ref = "refs/tags/${version}";
-  };
+  nativeBuildInputs = with pkgs; [ rdkafka avro-c jansson curl ];
+  buildInputs = with pkgs; [ perl ];
 }

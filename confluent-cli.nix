@@ -1,12 +1,8 @@
-{ pkgs }:
+{ pkgs, confluent-cli-src }:
 
-pkgs.stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation {
   name = "confluent-cli";
-  version = "3.1.1";
-  src = pkgs.fetchurl {
-    url = "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/${version}/confluent_${version}_darwin_amd64.tar.gz";
-    sha256 = "0sicg9ar8db4jkwj6b7jkj8m2mbzrkv59cvd6qiyyw2pwmdjid68";
-  };
+  src = confluent-cli-src;
 
   dontFixup = true;
 

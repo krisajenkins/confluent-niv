@@ -1,16 +1,11 @@
-{ lib, stdenv, zlib, perl, pkgconfig, python, openssl, which }:
+{ pkgs, rdkafka-src }:
 
-stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation {
   name = "rdkafka";
-  version = "v1.9.2";
+  src = rdkafka-src;
 
-  src = builtins.fetchGit {
-    url = "https://github.com/edenhill/librdkafka";
-    ref = "refs/tags/${version}";
-  };
-
-  nativeBuildInputs = [ pkgconfig ];
-  buildInputs = [ zlib perl python openssl which ];
+  nativeBuildInputs = with pkgs; [ pkgconfig ];
+  buildInputs = with pkgs; [ zlib perl python openssl which ];
 
   NIX_CFLAGS_COMPILE = "-Wno-error=strict-overflow";
 
@@ -18,7 +13,7 @@ stdenv.mkDerivation rec {
     patchShebangs .
   '';
 
-  meta = with lib; {
+  meta = with pkgs.lib; {
     description = "librdkafka - Apache Kafka C/C++ client library";
     homepage = https://github.com/edenhill/librdkafka;
     license = licenses.bsd2;

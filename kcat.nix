@@ -1,24 +1,18 @@
-{ lib, stdenv, pkg-config, zlib, rdkafka, yajl, avro-c, serdes, which }:
+{ pkgs, rdkafka, serdes, kcat-src }:
 
-stdenv.mkDerivation rec {
-  pname = "kcat";
-  version = "1.7.1";
+pkgs.stdenv.mkDerivation {
+  name = "kcat";
+  src = kcat-src;
 
-  src = builtins.fetchGit {
-    url = "https://github.com/edenhill/kcat";
-    ref = "refs/tags/${version}";
-    rev = "f2236ae5d985b9f31631b076df24ca6c33542e61";
-  };
+  nativeBuildInputs = with pkgs; [ pkg-config ];
 
-  nativeBuildInputs = [ pkg-config ];
-
-  buildInputs = [ zlib rdkafka yajl avro-c serdes which ];
+  buildInputs = with pkgs; [ zlib rdkafka yajl avro-c serdes which ];
 
   preConfigure = ''
     patchShebangs ./configure
   '';
 
-  meta = with lib; {
+  meta = with pkgs.lib; {
     description = "A generic non-JVM producer and consumer for Apache Kafka";
     homepage = "https://github.com/edenhill/kcat";
     license = licenses.bsd2;

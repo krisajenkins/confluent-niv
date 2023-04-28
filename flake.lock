@@ -24,6 +24,18 @@
         "url": "http://packages.confluent.io/archive/7.3/confluent-7.3.1.tar.gz"
       }
     },
+    "kafka-connector-http-source": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-RqKSLSXkfoK9RJljRSIQ7xzez/m4VZzpsVNVcje2R3Q=",
+        "type": "file",
+        "url": "https://github.com/castorm/kafka-connect-http/releases/download/v0.8.11/castorm-kafka-connect-http-0.8.11.zip"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/castorm/kafka-connect-http/releases/download/v0.8.11/castorm-kafka-connect-http-0.8.11.zip"
+      }
+    },
     "kcat-src": {
       "flake": false,
       "locked": {
@@ -78,6 +90,7 @@
       "inputs": {
         "confluent-cli-src": "confluent-cli-src",
         "confluent-platform-src": "confluent-platform-src",
+        "kafka-connector-http-source": "kafka-connector-http-source",
         "kcat-src": "kcat-src",
         "nixpkgs": "nixpkgs",
         "rdkafka-src": "rdkafka-src",

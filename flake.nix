@@ -28,6 +28,11 @@
       url = "http://packages.confluent.io/archive/7.3/confluent-7.3.1.tar.gz";
       flake = false;
     };
+
+    kafka-connector-http-source = {
+      url = "file+https://github.com/castorm/kafka-connect-http/releases/download/v0.8.11/castorm-kafka-connect-http-0.8.11.zip";
+      flake = false;
+    };
   };
 
   outputs =
@@ -39,6 +44,7 @@
     , kcat-src
     , confluent-cli-src
     , confluent-platform-src
+, kafka-connector-http-source 
     }:
     utils.lib.eachDefaultSystem (system:
     let
@@ -67,7 +73,7 @@
         };
 
         confluent-platform = import ./confluent-platform.nix {
-          inherit pkgs confluent-platform-src;
+          inherit pkgs confluent-platform-src kafka-connector-http-source;
         };
       };
 

@@ -1,5 +1,6 @@
 { pkgs
 , confluent-platform-src
+, kafka-connector-http-source
 }:
 
 pkgs.stdenv.mkDerivation {
@@ -12,48 +13,47 @@ pkgs.stdenv.mkDerivation {
   dontFixup = true;
 
   installPhase = ''
-        HUB_COMPONENTS_DIR=$out/share/confluent-hub-components
-    	mkdir -p $HUB_COMPONENTS_DIR
-        # bin/confluent-hub install --no-prompt --component-dir $HUB_COMPONENTS_DIR confluentinc/kafka-connect-aws-lambda:1.1.2
-        # bin/confluent-hub install --no-prompt --component-dir $HUB_COMPONENTS_DIR jcustenborder/kafka-connect-spooldir:2.0.62
+    HUB_COMPONENTS_DIR=$out/share/confluent-hub-components
+    mkdir -p $HUB_COMPONENTS_DIR
+    bin/confluent-hub install --no-prompt --component-dir $HUB_COMPONENTS_DIR ${kafka-connector-http-source}
 
-        mkdir -p $out
-        cp -R * $out
+    mkdir -p $out
+    cp -R * $out
 
-        rm -rf $out/bin/windows
+    rm -rf $out/bin/windows
 
-        # Customise and fix the configuration.
-        substituteInPlace $out/etc/kafka/server.properties \
-          --replace "#advertised.listeners=PLAINTEXT://your.host.name:9092" \
-                     "advertised.listeners=PLAINTEXT://localhost:9092" \
-          --replace "log.retention.hours=168" \
-                    "log.retention.hours=-1"
+    # Customise and fix the configuration.
+    substituteInPlace $out/etc/kafka/server.properties \
+      --replace "#advertised.listeners=PLAINTEXT://your.host.name:9092" \
+                 "advertised.listeners=PLAINTEXT://localhost:9092" \
+      --replace "log.retention.hours=168" \
+                "log.retention.hours=-1"
 
-        echo >> $out/etc/ksqldb/ksql-server.properties
-        echo 'ksql.streams.replication.factor = 1' >> $out/etc/ksqldb/ksql-server.properties
-        echo 'ksql.query.pull.table.scan.enabled=true' >> $out/etc/ksqldb/ksql-server.properties
-        # echo 'ksql.extension.dir = /Users/kjenkins/Work/Confluent/jenkins-udfs/extensions/' >> $out/etc/ksqldb/ksql-server.properties
+    echo >> $out/etc/ksqldb/ksql-server.properties
+    echo 'ksql.streams.replication.factor = 1' >> $out/etc/ksqldb/ksql-server.properties
+    echo 'ksql.query.pull.table.scan.enabled=true' >> $out/etc/ksqldb/ksql-server.properties
+    # echo 'ksql.extension.dir = /Users/kjenkins/Work/Confluent/jenkins-udfs/extensions/' >> $out/etc/ksqldb/ksql-server.properties
 
-        substituteInPlace $out/etc/ksqldb/ksql-server.properties \
-          --replace "# ksql.schema.registry.url=http://localhost:8081" \
-                      "ksql.schema.registry.url=http://localhost:8081"
+    substituteInPlace $out/etc/ksqldb/ksql-server.properties \
+      --replace "# ksql.schema.registry.url=http://localhost:8081" \
+                  "ksql.schema.registry.url=http://localhost:8081"
 
-        patchShebangs $out/bin
+    patchShebangs $out/bin
 
-        # allow us the specify logging directory using env
-        substituteInPlace $out/bin/kafka-run-class \
-          --replace 'LOG_DIR="$base_dir/logs"' 'LOG_DIR="$KAFKA_LOG_DIR"'
+    # allow us the specify logging directory using env
+    substituteInPlace $out/bin/kafka-run-class \
+      --replace 'LOG_DIR="$base_dir/logs"' 'LOG_DIR="$KAFKA_LOG_DIR"'
 
-        substituteInPlace $out/bin/ksql-run-class \
-          --replace 'LOG_DIR="$base_dir/logs"' 'LOG_DIR="$KAFKA_LOG_DIR"'
+    substituteInPlace $out/bin/ksql-run-class \
+      --replace 'LOG_DIR="$base_dir/logs"' 'LOG_DIR="$KAFKA_LOG_DIR"'
 
-        # Handled in a separate nix recipe.
-        rm $out/bin/confluent
+    # Handled in a separate nix recipe.
+    rm $out/bin/confluent
 
-        for p in $out/bin\/*; do
-          wrapProgram $p \
-            --set KAFKA_LOG_DIR "/tmp/apache-kafka-logs"
-        done
+    for p in $out/bin\/*; do
+      wrapProgram $p \
+        --set KAFKA_LOG_DIR "/tmp/apache-kafka-logs"
+    done
   '';
 
   meta = with pkgs.lib; {

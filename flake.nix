@@ -20,12 +20,12 @@
 
     # TODO This shouldn't be pinned to darwin.
     confluent-cli-src = {
-      url = "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/3.1.1/confluent_3.1.1_darwin_amd64.tar.gz";
+      url = "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/3.12.0/confluent_3.12.0_darwin_amd64.tar.gz";
       flake = false;
     };
 
     confluent-platform-src = {
-      url = "http://packages.confluent.io/archive/7.3/confluent-7.3.1.tar.gz";
+      url = "http://packages.confluent.io/archive/7.4/confluent-7.4.0.tar.gz";
       flake = false;
     };
 

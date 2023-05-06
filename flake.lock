@@ -3,25 +3,25 @@
     "confluent-cli-src": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-Vv4rMjhRRh26ungEh/CI1ol5o6rgLKvCHWd2e7NID7A=",
+        "narHash": "sha256-uA2+Tox+hfPdR4hwKOyJm62GNnjG+gj6A26DTfD8PWM=",
         "type": "tarball",
-        "url": "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/3.1.1/confluent_3.1.1_darwin_amd64.tar.gz"
+        "url": "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/3.12.0/confluent_3.12.0_darwin_amd64.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/3.1.1/confluent_3.1.1_darwin_amd64.tar.gz"
+        "url": "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/3.12.0/confluent_3.12.0_darwin_amd64.tar.gz"
       }
     },
     "confluent-platform-src": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-gTpwZZc/vkU1xggJsnoABDlkZ+MYO+9VZvofCdHojPg=",
+        "narHash": "sha256-koTozPCN9r+r/bahXbWMttHW9sjgpDQ/FyagWsI5pAk=",
         "type": "tarball",
-        "url": "http://packages.confluent.io/archive/7.3/confluent-7.3.1.tar.gz"
+        "url": "http://packages.confluent.io/archive/7.4/confluent-7.4.0.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "http://packages.confluent.io/archive/7.3/confluent-7.3.1.tar.gz"
+        "url": "http://packages.confluent.io/archive/7.4/confluent-7.4.0.tar.gz"
       }
     },
     "kafka-connector-http-source": {

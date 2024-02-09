@@ -4,8 +4,8 @@ pkgs.stdenv.mkDerivation {
   name = "rdkafka";
   src = rdkafka-src;
 
-  nativeBuildInputs = with pkgs; [ pkgconfig ];
-  buildInputs = with pkgs; [ zlib perl python openssl which ];
+  nativeBuildInputs = with pkgs; [ pkg-config ];
+  buildInputs = with pkgs; [ zlib perl python3 openssl which ];
 
   NIX_CFLAGS_COMPILE = "-Wno-error=strict-overflow";
 

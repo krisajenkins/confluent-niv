@@ -3,25 +3,27 @@
     "confluent-cli-src": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-uA2+Tox+hfPdR4hwKOyJm62GNnjG+gj6A26DTfD8PWM=",
+        "lastModified": 1707476521,
+        "narHash": "sha256-ceE0CrtcxjTQjDiM1N/XZsxOFuptV0VmgbvMGniNxfY=",
         "type": "tarball",
-        "url": "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/3.12.0/confluent_3.12.0_darwin_amd64.tar.gz"
+        "url": "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/3.48.1/confluent_3.48.1_darwin_amd64.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/3.12.0/confluent_3.12.0_darwin_amd64.tar.gz"
+        "url": "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/3.48.1/confluent_3.48.1_darwin_amd64.tar.gz"
       }
     },
     "confluent-platform-src": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-koTozPCN9r+r/bahXbWMttHW9sjgpDQ/FyagWsI5pAk=",
+        "lastModified": 1703098762,
+        "narHash": "sha256-EzStbfnTAPNwC39SZsSQhTgU6lGQXjArLFntfhocpxo=",
         "type": "tarball",
-        "url": "http://packages.confluent.io/archive/7.4/confluent-7.4.0.tar.gz"
+        "url": "http://packages.confluent.io/archive/7.5/confluent-7.5.3.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "http://packages.confluent.io/archive/7.4/confluent-7.4.0.tar.gz"
+        "url": "http://packages.confluent.io/archive/7.5/confluent-7.5.3.tar.gz"
       }
     },
     "kafka-connector-http-source": {
@@ -53,18 +55,35 @@
         "type": "github"
       }
     },
+    "libserdes-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1648843643,
+        "narHash": "sha256-AHqWpdlW2Fe25R/jXQxZD9MldCdMCB99wEkY+DASL1c=",
+        "owner": "confluentinc",
+        "repo": "libserdes",
+        "rev": "ec2175cb190e61d0b7c247ee0449da825520571a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "confluentinc",
+        "ref": "v6.2.4",
+        "repo": "libserdes",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1669833724,
-        "narHash": "sha256-/HEZNyGbnQecrgJnfE8d0WC5c1xuPSD2LUpB6YXlg4c=",
+        "lastModified": 1701282334,
+        "narHash": "sha256-MxCVrXY6v4QmfTwIysjjaX0XUhqBbxTWWB4HXtDYsdk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4d2b37a84fad1091b9de401eb450aae66f1a741e",
+        "rev": "057f9aecfb71c4437d2b27d3323df7f93c010b7e",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "22.11",
+        "ref": "23.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -72,16 +91,16 @@
     "rdkafka-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1659373798,
-        "narHash": "sha256-G6rTvb2Z2O1Df5/6upEB9Eh049sx+LWhhDKvsZdDqsc=",
+        "lastModified": 1698173350,
+        "narHash": "sha256-F67aKmyMmqBVG5sF8ZwqemmfvVi/0bDjaiugKKSipuA=",
         "owner": "edenhill",
         "repo": "librdkafka",
-        "rev": "9b72ca3aa6c49f8f57eea02f70aadb1453d3ba1f",
+        "rev": "95a542c87c61d2c45b445f91c73dd5442eb04f3c",
         "type": "github"
       },
       "original": {
         "owner": "edenhill",
-        "ref": "v1.9.2",
+        "ref": "v2.3.0",
         "repo": "librdkafka",
         "type": "github"
       }
@@ -92,27 +111,10 @@
         "confluent-platform-src": "confluent-platform-src",
         "kafka-connector-http-source": "kafka-connector-http-source",
         "kcat-src": "kcat-src",
+        "libserdes-src": "libserdes-src",
         "nixpkgs": "nixpkgs",
         "rdkafka-src": "rdkafka-src",
-        "serdes-src": "serdes-src",
         "utils": "utils"
-      }
-    },
-    "serdes-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1610533441,
-        "narHash": "sha256-7AWQGj/8rLYYjzayZgEBqTdPxLI6hvekZa7wjoJWmaQ=",
-        "owner": "confluentinc",
-        "repo": "libserdes",
-        "rev": "ed53a422a2ddc70acaa328f6e1b8012ec52d1fb6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "confluentinc",
-        "ref": "v6.2.0",
-        "repo": "libserdes",
-        "type": "github"
       }
     },
     "systems": {
@@ -135,11 +137,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1681202837,
-        "narHash": "sha256-H+Rh19JDwRtpVPAWp64F+rlEtxUWBAQW28eAi3SRSzg=",
+        "lastModified": 1705309234,
+        "narHash": "sha256-uNRRNRKmJyCRC/8y1RqBkqWBLM034y4qN7EprSdmgyA=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "cfacdce06f30d2b68473a46042957675eebb3401",
+        "rev": "1ef2e671c3b0c19053962c07dbda38332dcebf26",
         "type": "github"
       },
       "original": {

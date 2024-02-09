@@ -1,8 +1,8 @@
-{ pkgs, rdkafka, serdes-src }:
+{ pkgs, rdkafka, libserdes-src }:
 
 pkgs.stdenv.mkDerivation {
-  name = "serdes";
-  src = serdes-src;
+  name = "libserdes";
+  src = libserdes-src;
 
   nativeBuildInputs = with pkgs; [ rdkafka avro-c jansson curl ];
   buildInputs = with pkgs; [ perl ];

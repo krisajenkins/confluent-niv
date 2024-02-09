@@ -1,4 +1,4 @@
-{ pkgs, rdkafka, serdes, kcat-src }:
+{ pkgs, rdkafka, libserdes, kcat-src }:
 
 pkgs.stdenv.mkDerivation {
   name = "kcat";
@@ -6,7 +6,7 @@ pkgs.stdenv.mkDerivation {
 
   nativeBuildInputs = with pkgs; [ pkg-config ];
 
-  buildInputs = with pkgs; [ zlib rdkafka yajl avro-c serdes which ];
+  buildInputs = with pkgs; [ zlib rdkafka yajl avro-c libserdes which ];
 
   preConfigure = ''
     patchShebangs ./configure
